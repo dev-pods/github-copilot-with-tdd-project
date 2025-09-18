@@ -1,13 +1,17 @@
-# GitHub Copilot com TDD - Tutorial Prático
+# GitHub Copilot com TDD - API de Produtos
 
-Este é um projeto base para workshop de Github Copilot com TDD (Test-Driven Development). O objetivo é ensinar como usar o GitHub Copilot seguindo os princípios de TDD para desenvolver uma API REST em Node.js.
+Este é um projeto de aprendizado que demonstra como usar o GitHub Copilot com TDD (Test-Driven Development) para construir uma API de produtos. O objetivo é desenvolver uma API REST completa com operações CRUD para gerenciamento de produtos, utilizando dados mockados e seguindo as melhores práticas de desenvolvimento orientado por testes.
 
-## 🎯 Objetivos do Tutorial
+## 🎯 Objetivo do Projeto
 
-- Aprender os fundamentos do TDD (Test-Driven Development)
-- Utilizar GitHub Copilot para acelerar o desenvolvimento
-- Criar uma API REST robusta e testada
-- Entender as melhores práticas de desenvolvimento orientado por testes
+Construir uma **API de Produtos** com as seguintes características:
+
+- **CRUD completo**: Criar, listar, buscar, atualizar e remover produtos
+- **Dados mockados**: Utilizar dados em memória para simular um banco de dados
+- **TDD**: Desenvolver seguindo o ciclo Red-Green-Refactor
+- **GitHub Copilot**: Acelerar o desenvolvimento com IA
+- **Testes abrangentes**: Cobertura completa dos endpoints e funcionalidades
+- **Validação de dados**: Garantir integridade dos dados de entrada
 
 ## 🚀 Configuração Inicial
 
@@ -60,14 +64,12 @@ A API estará disponível em `http://localhost:3000`
 
 ```
 src/
-├── index.js        # Servidor Express principal
-└── utils.js        # Funções utilitárias
+├── index.js           # Servidor Express principal
 
 tests/
-├── api.test.js     # Testes dos endpoints da API
-└── utils.test.js   # Testes das funções utilitárias
+├── api.test.js        # Testes dos endpoints da API
 
-package.json        # Configurações e dependências
+package.json           # Configurações e dependências
 ```
 
 ## 🛠️ Tecnologias Utilizadas
@@ -77,7 +79,7 @@ package.json        # Configurações e dependências
 - **Supertest**: Biblioteca para testes de API
 - **Nodemon**: Reinicialização automática durante desenvolvimento
 
-## 📝 Endpoints Disponíveis
+## 📝 Endpoints da API de Produtos
 
 ### GET /
 Endpoint de boas-vindas que retorna informações sobre a API.
@@ -85,23 +87,63 @@ Endpoint de boas-vindas que retorna informações sobre a API.
 **Resposta:**
 ```json
 {
-  "success": true,
-  "message": "Bem-vindo à API do Tutorial TDD com GitHub Copilot!",
-  "data": {
-    "version": "1.0.0",
-    "endpoints": ["GET /", "GET /health"]
-  }
+  "message": "API is running successfully"
 }
 ```
 
-### GET /health
-Endpoint de verificação de saúde da API.
+### Endpoints de Produtos (a serem implementados)
 
-**Resposta:**
+#### GET /products
+Lista todos os produtos.
+
+#### GET /products/:id
+Busca um produto específico por ID.
+
+#### POST /products
+Cria um novo produto.
+**Body:**
 ```json
 {
-  "success": true,
-  "message": "API is running successfully"
+  "name": "Nome do Produto",
+  "description": "Descrição do produto",
+  "price": 99.99,
+  "category": "Categoria",
+  "stock": 10
+}
+```
+
+#### PUT /products/:id
+Atualiza um produto existente.
+
+#### DELETE /products/:id
+Remove um produto.
+
+## 📦 Modelo de Dados - Produto
+
+```javascript
+{
+  "id": "string", // UUID único do produto
+  "name": "string", // Nome do produto (obrigatório)
+  "description": "string", // Descrição detalhada
+  "price": "number", // Preço em reais (obrigatório)
+  "category": "string", // Categoria do produto
+  "stock": "number", // Quantidade em estoque
+  "createdAt": "string", // Data de criação (ISO 8601)
+  "updatedAt": "string" // Data da última atualização (ISO 8601)
+}
+```
+
+### Exemplo de Produto:
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Smartphone XYZ",
+  "description": "Smartphone com 128GB de armazenamento e câmera de 48MP",
+  "price": 899.99,
+  "category": "Eletrônicos",
+  "stock": 25,
+  "createdAt": "2025-09-18T10:30:00.000Z",
+  "updatedAt": "2025-09-18T10:30:00.000Z"
 }
 ```
 
@@ -113,12 +155,18 @@ Este projeto demonstra o ciclo TDD:
 2. **Green**: Escreva o código mínimo para fazer o teste passar
 3. **Refactor**: Melhore o código mantendo os testes passando
 
-### Exemplo Prático
+### Exemplo Prático - Desenvolvimento da API de Produtos
 
-Os testes em `tests/utils.test.js` demonstram como testar:
-- Validação de strings
-- Formatação de respostas da API
-- Casos de sucesso e erro
+1. **Red**: Escrever teste para endpoint `GET /products`
+2. **Green**: Implementar o endpoint básico para fazer o teste passar
+3. **Refactor**: Melhorar a estrutura do código, extrair para controladores
+
+Os testes demonstram como testar:
+- Endpoints de API (GET, POST, PUT, DELETE)
+- Validação de dados de entrada
+- Respostas de sucesso e erro
+- Estrutura de dados dos produtos
+- Casos extremos e validações
 
 ## 💡 Dicas para usar GitHub Copilot com TDD
 
@@ -127,18 +175,29 @@ Os testes em `tests/utils.test.js` demonstram como testar:
 3. **Nomeação clara**: Funções e variáveis bem nomeadas geram sugestões melhores
 4. **Iteração**: Use o Copilot para refatorar e melhorar o código existente
 
-## 🎯 Próximos Passos
+## 🎯 Roadmap de Desenvolvimento
 
-Este projeto base pode ser expandido com:
+### Fase 1: Setup e Estrutura Base ✅
+- [x] Configuração inicial do projeto
+- [x] Setup de testes com Jest
+- [x] Servidor Express básico
 
-- [ ] Endpoints CRUD (Create, Read, Update, Delete)
-- [ ] Validação de dados com middleware
-- [ ] Banco de dados (MongoDB, PostgreSQL)
-- [ ] Autenticação e autorização
+### Fase 2: API de Produtos (Em Desenvolvimento)
+- [ ] Modelo de dados para produtos - Criar estrutura de dados mockados
+- [ ] GET /products - Listar todos os produtos
+- [ ] GET /products/:id - Buscar produto por ID
+- [ ] POST /products - Criar novo produto
+- [ ] PUT /products/:id - Atualizar produto
+- [ ] DELETE /products/:id - Remover produto
+- [ ] Validação de dados de entrada
+- [ ] Tratamento de erros específicos
+
+### Fase 3: Melhorias e Expansões
+- [ ] Filtros e paginação para listagem
+- [ ] Busca por nome/categoria
+- [ ] Validação avançada de campos
+- [ ] Middleware de logs
 - [ ] Documentação com Swagger
-- [ ] Logs estruturados
-- [ ] Tratamento de erros avançado
-- [ ] Rate limiting
 - [ ] Containerização com Docker
 
 ## 📖 Recursos Adicionais
@@ -147,17 +206,6 @@ Este projeto base pode ser expandido com:
 - [Express.js Guide](https://expressjs.com/en/guide/routing.html)
 - [GitHub Copilot Docs](https://docs.github.com/en/copilot)
 - [TDD Best Practices](https://github.com/testdouble/contributing-tests/wiki/Test-Driven-Development)
-
-## 🤝 Contribuindo
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Escreva testes para sua feature
-4. Implemente a feature
-5. Execute os testes (`npm test`)
-6. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-7. Push para a branch (`git push origin feature/nova-feature`)
-8. Abra um Pull Request
 
 ## 📄 Licença
 

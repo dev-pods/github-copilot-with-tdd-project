@@ -1,7 +1,7 @@
 {
   "name": "github-copilot-with-tdd-project",
   "version": "1.0.0",
-  "description": "Este é um projeto base para workshop de Github Copilot com TDD",
+  "description": "API de produtos desenvolvida com TDD e GitHub Copilot - projeto de aprendizado",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
-  "keywords": ["nodejs", "api", "tdd", "github-copilot", "workshop"],
+  "keywords": ["nodejs", "api", "produtos", "tdd", "github-copilot", "express", "rest-api", "crud"],
   "author": "",
   "license": "ISC",
   "dependencies": {
